@@ -40,5 +40,39 @@ Ext.define('Ux.locale.override.st.Component', {
                 me.setHtml(html);
             }
         }
+    },
+    
+    /*** I3 ***/
+    setAllProperties : function(manager, locales){
+        for(var key in locales){
+            this.setPropText (manager, locales, key);
+        
+        }
+    },
+    setPropText : function (manager, locales, propName){
+        var me = this;
+        var textKey = locales[propName];
+        var defaultText = '';
+        if(textKey){
+            if (Ext.isObject(textKey)) {
+                defaultText = textKey.defaultText;
+                textKey = textKey.key;
+            }
+            var text = manager.get(textKey, defaultText);
+            
+            try{
+                if (Ext.isString(text)) {
+                    if(manager._loaded && Ext.isEmpty(text)){
+                        console.error("Translation empty for language (" + manager._language + "), key: " + textKey);
+                    }
+                    var methodName = "me.set" + Ext.String.capitalize(propName + '');
+                    eval(methodName + '(text);') ;
+                }
+            } catch(e){
+                console.error("Error on translation: " + e.message);
+            }
+        }
     }
+    /*** I3 ***/
+
 });
