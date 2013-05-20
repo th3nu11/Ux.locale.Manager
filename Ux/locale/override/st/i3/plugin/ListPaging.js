@@ -15,7 +15,7 @@ Ext.define('Ux.locale.override.st.i3.plugin.ListPaging', {
         //noMoreRecordsText 
 		me.setAllProperties(manager, locales);
 		//refresh
-		if(manager._loaded){
+		if(manager._loaded  && this.getList()){
 			me.onStoreLoad(this.getList().getStore());
 		}
 		

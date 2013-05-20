@@ -22,7 +22,7 @@ Ext.define('Ux.locale.override.st.i3.plugin.PullRefresh', {
 		me.setAllProperties(manager, locales);
 		
 		//refresh
-		if(manager._loaded){
+		if(manager._loaded && me.updatedEl){
 			me.resetRefreshState();
 		}
         me.callParent(arguments);
