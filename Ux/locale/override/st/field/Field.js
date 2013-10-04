@@ -29,7 +29,7 @@ Ext.define('Ux.locale.override.st.field.Field', {
 
         if (placeholder) {
             if (Ext.isObject(placeholder)) {
-                defaultPlaceholder = label.defaultPlaceholder;
+                defaultPlaceholder = placeholder.defaultPlaceholder;
                 placeholder        = placeholder.key;
             }
 

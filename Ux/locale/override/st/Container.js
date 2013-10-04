@@ -12,7 +12,7 @@ Ext.define('Ux.locale.override.st.Container', {
             title       = locales.title,
             manager     = me.locale,
             defaultText = '';
-    		
+
         if (title) {
             if (Ext.isObject(title)) {
                 defaultText = title.defaultText;

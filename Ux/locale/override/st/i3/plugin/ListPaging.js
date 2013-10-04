@@ -1,21 +1,20 @@
 Ext.define('Ux.locale.override.st.i3.plugin.ListPaging', {
     override : 'Ext.plugin.ListPaging',
-
+	autoLocale : false,
     requires : [
         'Ux.locale.override.st.Component'
     ],
-
 
     setLocale : function(locale) {
         var me                  		= this,
             locales             		= me.locales || me.getInitialConfig().locales,
             manager             		= me.locale;
 
-        //loadMoreText
-        //noMoreRecordsText 
+		//loadMoreText
+		//noMoreRecordsText 
 		me.setAllProperties(manager, locales);
 		//refresh
-		if(manager._loaded  && this.getList()){
+		if(manager._loaded && this.getList()){
 			me.onStoreLoad(this.getList().getStore());
 		}
 		

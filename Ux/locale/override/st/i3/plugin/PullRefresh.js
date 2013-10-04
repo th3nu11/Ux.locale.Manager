@@ -1,6 +1,6 @@
 Ext.define('Ux.locale.override.st.i3.plugin.PullRefresh', {
     override : 'Ext.plugin.PullRefresh',
-
+	autoLocale : false,
     requires : [
         'Ux.locale.override.st.Component'
     ],

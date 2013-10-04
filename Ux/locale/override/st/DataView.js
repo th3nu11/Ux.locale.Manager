@@ -4,7 +4,7 @@ Ext.define('Ux.locale.override.st.DataView', {
     requires: [
     'Ux.locale.override.st.Component'
     ],
-
+	autoLocale : false,
     setLocale: function(locale) {
         var me = this,
             locales = me.locales || me.getInitialConfig().locales,
@@ -21,7 +21,7 @@ Ext.define('Ux.locale.override.st.DataView', {
             emptyText = manager.get(emptyText, defaultEmptyText);
 
             if(Ext.isString(emptyText)) {
-                me.setEmptyText(emptyText);
+                me.updateEmptyText(emptyText);
             }
         }
 

@@ -34,6 +34,7 @@ Ext.define('Ux.locale.Manager', {
     },
 
     init : function(callback) {
+        Ext.log('local manager init');
         var me         = this,
             type       = me._type,
             lmCallback = me._callback,
@@ -50,7 +51,7 @@ Ext.define('Ux.locale.Manager', {
 
     loadAjaxRequest: function(callback) {
         var me = this;
-
+        Ext.log('local manager - ajax start');
         me._loaded = false;
 
         me._beforeLoad();
@@ -63,26 +64,36 @@ Ext.define('Ux.locale.Manager', {
             json;
 
         params.language = language;
-
+        Ext.log('local manager - ajax configure');
         Ext.apply(ajaxConfig, {
             params   : params,
             url      : path,
             callback : function(options, success, response) {
-                json       = decoder(options, success, response);
-                me._locale = json;
-                me._loaded = true;
+                Ext.log('local manager - ajax callback: ' + success);
+                try{
+                    json       = decoder(options, success, response);
+                    me._locale = json;
+                    me._loaded = true;
+                } catch(e){
+                    console.error('Local manager loading error', e);
+                    me._locale = null;
+                    me._loaded = false;
+                }
+
 
                 if (typeof callback == 'function') {
+                    Ext.log ('local manager - ajax call callback!');
                     Ext.Function.bind(callback, me, [me, options, success, response])();
                 }
             }
         });
 
+        Ext.log('local manager - ajax call!');
         Ext.Ajax.request(ajaxConfig);
     },
 
     loadScriptTag : function() {
-        console.log('<script/> support coming');
+        Ext.log('<script/> support coming');
     },
 
     setConfig : function(config) {
